@@ -1,0 +1,32 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: prod
+---
+server:
+  port: 8083
+spring:
+  profiles: dev
+---
+server:
+  port: 8084
+
+spring:
+  profiles: prod  #指定属于哪个环境
+
+logging:
+  level:
+    com:
+     # example: trace
+      #默认当前目录下创建一个springboot.log来记录日志信息
+      #也可以指定目录
+ # file: springboot.log
+  #默认使用spring.log来记录日志文件
+ # path: D:/log/springboot_learnning
+  #指定控制台输出的日志的格式
+  pattern:
+    console:
+      #指定文件输出的日志的格式
+    file:
+
