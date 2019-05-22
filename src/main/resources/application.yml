@@ -2,12 +2,29 @@ server:
   port: 8080
 spring:
   profiles:
-    active: prod
+    active: dev
 ---
 server:
-  port: 8083
+  port: 8080
 spring:
   profiles: dev
+
+  application:
+    name: bd-job-executor-springboot
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092,127.0.0.1:9092
+    consumer:
+      groupId: executor
+      enable-auto-commit: true
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      groupId: executor
+      keyDeserializer: org.apache.kafka.common.serialization.StringSerializer
+      valueDserializer: org.apache.kafka.common.serialization.StringSerializer
+      batch-size: 16384
+      buffer-memory: 33554432
+
 ---
 server:
   port: 8084
